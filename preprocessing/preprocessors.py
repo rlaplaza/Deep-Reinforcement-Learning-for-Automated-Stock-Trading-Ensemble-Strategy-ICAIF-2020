@@ -46,8 +46,8 @@ def calcualte_price(df):
 
 def add_technical_indicator(df):
     """
-    calcualte technical indicators
-    use stockstats package to add technical inidactors
+    calculate technical indicators
+    use stockstats package to add technical indicators
     :param data: (df) pandas dataframe
     :return: (df) pandas dataframe
     """

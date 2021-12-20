@@ -74,7 +74,7 @@ def train_PPO(env_train, model_name, timesteps=50000):
     """PPO model"""
 
     start = time.time()
-    model = PPO("MlpPolicy", env_train, ent_coef=0.005, nminibatches=8)
+    model = PPO("MlpPolicy", env_train, ent_coef=0.005)
     # model = PPO2('MlpPolicy', env_train, ent_coef = 0.005)
 
     model.learn(total_timesteps=timesteps)

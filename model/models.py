@@ -11,12 +11,8 @@ from stable_baselines3 import A2C
 from stable_baselines3 import DDPG
 from stable_baselines3 import TD3
 
-from stable_baselines3.ddpg.policies import DDPGPolicy
-from stable_baselines3.common.policies import MlpPolicy, MlpLstmPolicy, MlpLnLstmPolicy
 from stable_baselines3.common.noise import (
-    NormalActionNoise,
     OrnsteinUhlenbeckActionNoise,
-    AdaptiveParamNoiseSpec,
 )
 from stable_baselines3.common.vec_env import DummyVecEnv
 from preprocessing.preprocessors import *

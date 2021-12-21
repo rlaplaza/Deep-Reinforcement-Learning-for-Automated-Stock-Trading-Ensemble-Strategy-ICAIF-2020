@@ -53,14 +53,13 @@ def train_DDPG(env_train, model_name, timesteps=10000):
 
     # add the noise objects for DDPG
     n_actions = env_train.action_space.shape[-1]
-    param_noise = None
     action_noise = OrnsteinUhlenbeckActionNoise(
         mean=np.zeros(n_actions), sigma=float(0.5) * np.ones(n_actions)
     )
 
     start = time.time()
     model = DDPG(
-        "MlpPolicy", env_train, param_noise=param_noise, action_noise=action_noise
+        "MlpPolicy", env_train, action_noise=action_noise
     )
     model.learn(total_timesteps=timesteps)
     end = time.time()
@@ -253,7 +252,7 @@ def run_ensemble_strategy(
         # print("==============Model Training===========")
         print("======A2C Training========")
         model_a2c = train_A2C(
-            env_train, model_name="A2C_30k_dow_{}".format(i), timesteps=30000
+            env_train, model_name="A2C_30k_dow_{}".format(i), timesteps=10000
         )
         print(
             "======A2C Validation from: ",
@@ -269,7 +268,7 @@ def run_ensemble_strategy(
 
         print("======PPO Training========")
         model_ppo = train_PPO(
-            env_train, model_name="PPO_100k_dow_{}".format(i), timesteps=100000
+            env_train, model_name="PPO_100k_dow_{}".format(i), timesteps=10000
         )
         print(
             "======PPO Validation from: ",
@@ -287,7 +286,6 @@ def run_ensemble_strategy(
         model_ddpg = train_DDPG(
             env_train, model_name="DDPG_10k_dow_{}".format(i), timesteps=10000
         )
-        # model_ddpg = train_TD3(env_train, model_name="DDPG_10k_dow_{}".format(i), timesteps=20000)
         print(
             "======DDPG Validation from: ",
             unique_trade_date[i - rebalance_window - validation_window],

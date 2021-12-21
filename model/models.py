@@ -296,6 +296,7 @@ def run_ensemble_strategy(
             model=model_ddpg, test_data=validation, test_env=env_val, test_obs=obs_val
         )
         sharpe_ddpg = get_validation_sharpe(i)
+        print("DDPG Sharpe Ratio: ", sharpe_ddpg)
 
         ppo_sharpe_list.append(sharpe_ppo)
         a2c_sharpe_list.append(sharpe_a2c)

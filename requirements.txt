@@ -10,6 +10,7 @@ joblib
 
 # plot
 matplotlib
+mplfinance
 
 # testing requirements
 pytest
